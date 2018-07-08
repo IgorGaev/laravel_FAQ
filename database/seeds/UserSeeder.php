@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faq\User;
 
-class PageSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +13,7 @@ class PageSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('pages')->insert(['name'=>'mysite']);
+        $defaultPassword = Hash::make('admin');
+        User::create(['login'=>'admin','password'=>$defaultPassword]);
     }
 }

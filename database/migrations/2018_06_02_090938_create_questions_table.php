@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFaqTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,11 @@ class CreateFaqTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->text('question');
-            $table->text('answer');
-            $table->string('name');
+            $table->string('username', 100);
             $table->string('email');
+            $table->tinyInteger('status')->unsigned()->default(0);
+            $table->boolean('public')->default(0);            
+            $table->text('answer')->nullable();
             $table->timestamps();
         });
     }
