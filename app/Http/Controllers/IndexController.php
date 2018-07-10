@@ -12,8 +12,7 @@ class IndexController extends Controller {
     //
 
     public function index() {
-
-
+        
         if (view()->exists('faq.home')) {
             $categories = Category::has('questions')->get();
             $data = [

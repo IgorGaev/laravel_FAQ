@@ -10,20 +10,20 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-                            <li class="nav-item">
-                                <a class="btn btn-link" href="{{route('admins')}}">
+              <li class="nav-item" style="padding-bottom: 5px; padding-top: 5px ">
+                                <a class="btn btn-info" href="{{route('admins')}}">
                                     <span data-feather="home"></span>
                                     Администраторы <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="btn btn-link" href="{{route('categories')}}">
+                            <li class="nav-item" style="padding-bottom: 5px ">
+                                <a class="btn btn-info" href="{{route('categories')}}">
                                     <span data-feather="file"></span>
                                     Категории
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="btn btn-link" href="{{route('questionsShowAll')}}">
+                            <li class="nav-item" style="padding-bottom: 5px ">
+                                <a class="btn btn-info" href="{{route('questionsShowAll')}}">
                                     <span data-feather="shopping-cart"></span>
                                     Вопросы без ответа
                                 </a>

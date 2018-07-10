@@ -12,4 +12,9 @@ class Question extends Model
     public $incrementing = TRUE;
     public $timestamps = TRUE;
     protected $guarded = ['id'];
+    
+    public function category() {
+        return $this->belongsTo('Faq\Category');        
+    }
+    
 }

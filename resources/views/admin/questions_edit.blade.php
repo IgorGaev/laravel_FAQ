@@ -45,21 +45,9 @@
                         <table>
                             <tr>
                                 <td>
-                                    {!! Form::button('Сохранить', ['class' => 'btn btn-primary','type'=>'submit']) !!}
+                                    {!! Form::button('Сохранить изменения', ['class' => 'btn btn-primary','type'=>'submit']) !!}
                                 </td>
                                {!! Form::close() !!} 
-                                <td>
-                                    {!! Form::open(['url'=>route('publicOn',['question'=>$data['id']]), 'class'=>'form-horizontal','method' => 'POST']) !!}
-                                    {!! Form::hidden('_method', 'patch') !!}
-                                    {!! Form::button('Опубликовать',['class'=>'btn btn-success', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                </td>
-                                <td>
-                                    {!! Form::open(['url'=>route('publicOff',['question'=>$data['id']]), 'class'=>'form-horizontal','method' => 'POST']) !!}
-                                    {!! Form::hidden('_method', 'patch') !!}
-                                    {!! Form::button('Скрыть',['class'=>'btn btn-success ', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                </td>
                             </tr>
                         </table>
 

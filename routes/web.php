@@ -1,28 +1,6 @@
 <?php
 
-Route::get('/', 'SiteController@show')->name('main');
-//
-//Route::match(['get', 'post'], '/login', 'LoginController@show')->name('login');
-//
-////Route::match(['get', 'post'], '/question', 'QuestionsController@show')->name('question');
-//
-//
-//Route::get('/home', 'HomeController@index')->name('home');
-//
-//Route::resource('/questions', 'QuestionsController');
-////
-//
-//Route::group(function() {
-//    
-//    Route::get('/', function() {
-//        return view('admin.dashboard');
-//    })->name('admin');
-//    
-//    Route::resource('/questions', 'QuestionsController');
-//    Route::resource('/categories', 'CategoriesController');
-//    
-//});
-///
+
 Route::group(['middleware'=>'web'], function () {
     
     Route::get('/', ['uses' => 'IndexController@index', 'as' => 'home']);
@@ -34,6 +12,7 @@ Route::group(['middleware'=>'web'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    
     Route::get('/', function () {
         if (view()->exists('admin.index')) {
             $data = ['title' => 'Панель администратора'];
@@ -76,25 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
         Route::patch('/publicOn/{question}', ['uses' => 'admin\QuestionsController@publicOn', 'as' => 'publicOn']);
         Route::patch('/publicOff/{question}', ['uses' => 'admin\QuestionsController@publicOff', 'as' => 'publicOff']);
-        
      
     });
-    
 });    
-////
 
-//
-
-//Route::group(['prefix' => 'admin'], function() {
-//    
-//    Route::get('/', function() {
-//        return view('admin.dashboard');
-//    })->name('admin');
-//    
-//    Route::resource('/admins', 'AdminsController');
-//    
-//    Route::resource('/questions', 'QuestionsController');
-//    
-//    Route::resource('/categories', 'CategoriesController');
-//    
-//});
