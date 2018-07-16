@@ -26,7 +26,7 @@
                             @foreach($category->questions as $k => $question)
                             <tr>
                                 <td>{{ $k=$k+1 }}</td>
-                                <td>{!! Html::link(route('questionsEdit',['question'=>$question->id]),$question->question,['alt'=>$question->question]) !!}</td>
+                                <td>{!! Html::link(route('questions.edit',['question'=>$question->id]),$question->question,['alt'=>$question->question]) !!}</td>
                                 <td>{{ $question->created_at }}</td>
                                 <td>
                                     @if($question->answer && $question->public == 1)
@@ -49,13 +49,8 @@
                                     {!! Form::button('Опубликовать',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
                                 </td>
-<!--                                <td>
-                                    {!! Form::open(['url'=>route('questionsEdit',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'GET']) !!}
-                                    {!! Form::button('Редактировать',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
-                                </td>-->
                                 <td>
-                                    {!! Form::open(['url'=>route('questionsDestroy',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
+                                    {!! Form::open(['url'=>route('questions.destroy',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
                                     {!! Form::hidden('_method', 'delete') !!}
                                     {!! Form::button('Удалить',['class'=>'btn btn-danger btn-sm', 'type'=>'submit']) !!}
                                     {!! Form::close() !!}
@@ -69,6 +64,6 @@
             </div>
         </div>
     </div>
-    {!!  link_to('admin/categories', 'Back') !!}
+     {!! Html::link(route('categories.index'),'Back') !!}
 </div>
 @endsection

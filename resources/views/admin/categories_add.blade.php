@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
 
-                        {!! Form::open(['url' => route('categoriesStore'),'class'=>'form-horizontal','method'=>'POST']) !!}
+                        {!! Form::open(['url' => route('categories.store'),'class'=>'form-horizontal','method'=>'POST']) !!}
 
                         <div class="form-group">
                             {!! Form::label('name','Название:',['class' => 'col-xs-2 control-label'])   !!}

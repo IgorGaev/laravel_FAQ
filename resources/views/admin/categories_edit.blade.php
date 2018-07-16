@@ -8,7 +8,7 @@
                 <div class="card-header">{{ $title }}</div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        {!! Form::open(['url' => route('categoriesUpdate',array('category'=>$data['id'])),'class'=>'form-horizontal','method'=>'POST') !!}
+                        {!! Form::open(['url' => route('categories.update',array('category'=>$data['id'])),'class'=>'form-horizontal','method'=>'POST') !!}
                         {!! Form::hidden('_method', 'patch') !!}
                         <div class="form-group">
                             {!! Form::hidden('id', $data['id']) !!}
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    {!!  link_to('admin/categories', 'Back') !!}
+    {!! Html::link(route('categories.index'),'Back') !!}
 </div>
 @endsection
 

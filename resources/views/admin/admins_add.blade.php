@@ -9,8 +9,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
 
-                        {!! Form::open(['url' => route('adminsStore'),'class'=>'form-horizontal','method'=>'POST']) !!}
-
+                        {!! Form::open(['url' => route('admins.store'),'class'=>'form-horizontal','method'=>'POST']) !!}
 
                         <div class="form-group">
 
@@ -20,7 +19,6 @@
                             </div>
 
                         </div>
-
 
                         <div class="form-group">
                             {!! Form::label('password', 'Пароль:',['class'=>'col-xs-2 control-label']) !!}
@@ -36,10 +34,7 @@
                             </div>
                         </div>
 
-
-
                         {!! Form::close() !!}
-
 
                     </div>
                 </div>

@@ -26,12 +26,12 @@
                                 @foreach($categories as $k => $category)
                                 <tr>
                                     <td>{{ $k=$k+1 }}</td>
-                                    <td>{!! Html::link(route('questions',['category'=>$category->id]),$category->name,['alt'=>$category->name]) !!}</td>
+                                    <td>{!! Html::link(route('questions.index',['category'=>$category->id]),$category->name,['alt'=>$category->name]) !!}</td>
                                     <td>{{ $category->questions->count() }}</td>
                                     <td>{{ $category->questions->where('public',1)->count() }}</td>
                                     <td>{{ $category->questions->where('answer', null)->count() }}</td>
                                     <td>
-                                        {!! Form::open(['url'=>route('categoriesDestroy',['category'=>$category->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
+                                        {!! Form::open(['url'=>route('categories.destroy',['category'=>$category->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
                                         {!! Form::hidden('_method', 'delete') !!}
                                         {!! Form::button('Удалить',['class'=>'btn btn-danger btn-sm', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
@@ -42,7 +42,7 @@
                         </table>
                         @endif
 
-                        {!! Form::open(['url'=>route('categoriesAdd'), 'class'=>'form-horizontal','method' => 'GET']) !!}
+                        {!! Form::open(['url'=>route('categories.create'), 'class'=>'form-horizontal','method' => 'GET']) !!}
                         {!! Form::button('Создать тему',['class'=>'btn btn-primary btn-sm', 'type'=>'submit']) !!}
                         {!! Form::close() !!}
 
@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    {!!  link_to('admin', 'Back') !!}
+    {!! Html::link(route('adminpanel'),'Back') !!}
 </div>
 
 @endsection

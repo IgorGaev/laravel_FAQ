@@ -25,15 +25,14 @@
                                 <tr>
                                     <td>{{ $k=$k+1 }}</td>
                                     <td>{{ $admin->login }}</td>
-                                    <!--<td>{!! Html::link(route('adminsEdit',['admin'=>$admin->id]),'Изменить',['alt'=>$admin->password]) !!}</td>-->
                                     <td>{{ $admin->created_at }}</td>
                                     <td>
-                                        {!! Form::open(['url'=>route('adminsEdit',['admin'=>$admin->id]), 'class'=>'form-horizontal','method' => 'GET']) !!}
+                                        {!! Form::open(['url'=>route('admins.edit',['admin'=>$admin->id]), 'class'=>'form-horizontal','method' => 'GET']) !!}
                                         {!! Form::button('Изменить пароль',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        {!! Form::open(['url'=>route('adminsDestroy',['admin'=>$admin->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
+                                        {!! Form::open(['url'=>route('admins.destroy',['admin'=>$admin->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
                                         {!! Form::hidden('_method', 'delete') !!}
                                         {!! Form::button('Удалить',['class'=>'btn btn-danger btn-sm', 'type'=>'submit']) !!}
                                         {!! Form::close() !!}
@@ -44,7 +43,7 @@
                         </table>
                         @endif
 
-                        {!! Form::open(['url'=>route('adminsAdd'), 'class'=>'form-horizontal','method' => 'GET']) !!}
+                        {!! Form::open(['url'=>route('admins.create'), 'class'=>'form-horizontal','method' => 'GET']) !!}
                         {!! Form::button('Новый администратор',['class'=>'btn btn-primary btn-sm', 'type'=>'submit']) !!}
                         {!! Form::close() !!}
 
@@ -53,7 +52,7 @@
             </div>
         </div>
     </div>
-    {!!  link_to('admin', 'Back') !!}
+    {!! Html::link(route('adminpanel'),'Back') !!}
 </div>
 
 @endsection
