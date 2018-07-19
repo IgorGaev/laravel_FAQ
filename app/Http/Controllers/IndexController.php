@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Faq\Category;
 use Faq\Question;
+use Faq\Http\Requests;
+use Faq\Http\Requests\QuestionRequest;
 
 class IndexController extends Controller {
-
-    //
 
     public function index() {
         
@@ -18,7 +18,6 @@ class IndexController extends Controller {
                 'title' => 'Главная',
                 'categories' => $categories
             ];
-
             return view('faq/home', $data);
     }
 
@@ -32,13 +31,13 @@ class IndexController extends Controller {
             return view('faq.home_cat_add', $data);
         }
 
-    public function store(\Faq\Http\Requests\QuestionRequest $request) {
+    public function store(QuestionRequest $request) {
 
         $input = $request->except('_token');
         $question = new Question();
         $question->fill($input);
         if ($question->save()) {
-            return redirect('/')->with('status', 'Вопрос добавлен');
+            return redirect(route('index'))->with('status', 'Вопрос добавлен');
         }
     }
 

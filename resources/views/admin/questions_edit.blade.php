@@ -50,7 +50,6 @@
                                {!! Form::close() !!} 
                             </tr>
                         </table>
-
                         {!! Form::close() !!}
 
                     </div>

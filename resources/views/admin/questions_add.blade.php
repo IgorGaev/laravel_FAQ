@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
 
-                        {!! Form::open(['url' => route('questions.store'),'class'=>'form-horizontal','method'=>'POST']) !!}
+                        {!! Form::open(['url' => route('store'),'class'=>'form-horizontal','method'=>'POST']) !!}
 
                         <div class="form-group">
 

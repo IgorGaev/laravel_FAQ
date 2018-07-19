@@ -3,5 +3,5 @@
 </header>
 <ul>
     <li>{!! Html::link(route('adminpanel'),'Панель администратора') !!}</li>
-    <li>{!! Html::link(route('homeCatAdd'),'Задать вопрос') !!}</li>
+    <li>{!! Html::link(route('create'),'Задать вопрос') !!}</li>
 </ul>

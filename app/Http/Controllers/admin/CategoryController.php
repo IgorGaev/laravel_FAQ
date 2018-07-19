@@ -5,7 +5,7 @@ namespace Faq\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use Faq\Http\Controllers\Controller;
 use Faq\Category;
-use Faq\Http\Requests;
+use Faq\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller {
@@ -45,13 +45,13 @@ class CategoryController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\CategoryRequest $request) {
+    public function store(CategoryRequest $request) {
         //
         $input = $request->except('_token');
         $category = new Category();
         $category->fill($input);
         if ($category->save()) {
-            return redirect('admin/categories')->with('status', 'Тема создана');
+            return redirect()->route('categories.index')->with('status', 'Тема создана');
         }
     }
 
@@ -96,7 +96,7 @@ class CategoryController extends Controller {
         //
         $category->questions()->delete();
         $category->delete();
-        return redirect('admin/categories')->with('status', 'Тема удалена');
+        return redirect()->route('categories.index')->with('status', 'Тема удалена');
     }
 
 }

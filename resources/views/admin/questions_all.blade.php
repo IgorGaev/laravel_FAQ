@@ -24,9 +24,7 @@
                                 <td>{{$question->question}}</td>
                                 <td>{{ $question->created_at }}</td>
                                 <td>
-                                    {!! Form::open(['url'=>route('questions.edit',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'GET']) !!}
-                                    {!! Form::button('Редактировать',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
+                                    {!! Html::link(route('questions.edit',['question'=>$question->id]),'Редактировать',['class'=>' btn btn-success btn-sm']) !!}
                                 </td>
                                 <td>
                                     {!! Form::open(['url'=>route('questions.destroy',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}

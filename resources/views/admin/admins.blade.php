@@ -27,9 +27,7 @@
                                     <td>{{ $admin->login }}</td>
                                     <td>{{ $admin->created_at }}</td>
                                     <td>
-                                        {!! Form::open(['url'=>route('admins.edit',['admin'=>$admin->id]), 'class'=>'form-horizontal','method' => 'GET']) !!}
-                                        {!! Form::button('Изменить пароль',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
-                                        {!! Form::close() !!}
+                                        {!! Html::link(route('admins.edit',['admin'=>$admin->id]),'Изменить пароль',['class'=>' btn btn-success btn-sm']) !!}
                                     </td>
                                     <td>
                                         {!! Form::open(['url'=>route('admins.destroy',['admin'=>$admin->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
@@ -42,11 +40,7 @@
                             </tbody>
                         </table>
                         @endif
-
-                        {!! Form::open(['url'=>route('admins.create'), 'class'=>'form-horizontal','method' => 'GET']) !!}
-                        {!! Form::button('Новый администратор',['class'=>'btn btn-primary btn-sm', 'type'=>'submit']) !!}
-                        {!! Form::close() !!}
-
+                        {!! Html::link(route('admins.create'),'Новый администратор',['class'=>' btn btn-primary btn-sm']) !!}
                     </div>
                 </div>
             </div>

@@ -41,10 +41,8 @@
                             </tbody>
                         </table>
                         @endif
-
-                        {!! Form::open(['url'=>route('categories.create'), 'class'=>'form-horizontal','method' => 'GET']) !!}
-                        {!! Form::button('Создать тему',['class'=>'btn btn-primary btn-sm', 'type'=>'submit']) !!}
-                        {!! Form::close() !!}
+                        
+                        {!! Html::link(route('categories.create'),'Создать тему',['class'=>' btn btn-primary btn-sm']) !!}
 
                     </div>
                 </div>

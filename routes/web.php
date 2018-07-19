@@ -2,25 +2,21 @@
 
 Route::group(['middleware' => 'web'], function () {
 
-    Route::get('/', ['uses' => 'IndexController@index', 'as' => 'home']);
-    Route::get('/add', ['uses' => 'IndexController@create', 'as' => 'homeCatAdd']);
-    Route::post('/add', ['uses' => 'IndexController@store', 'as' => 'homeCatStore']);
-
+    Route::resource('/', 'IndexController', ['only' => ['index', 'create', 'store']]);
     Route::auth();
+    
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth'], function () {
 
-    Route::get('/', ['uses' => 'admin\AdminpanelController@index', 'as' => 'adminpanel']);
+    Route::get('/', 'AdminpanelController@index')->name('adminpanel');
+    Route::get('/need_answer', 'QuestionController@showAll')->name('questionsShowAll');
+    Route::get('/On/{question}', 'QuestionController@publicOn')->name('publicOn');
+    Route::get('/Off/{question}', 'QuestionController@publicOff')->name('publicOff');
 
-    Route::resources([
-        'admins' => 'admin\AdminController',
-        'categories' => 'admin\CategoryController',
-        'questions' => 'admin\QuestionController'
-    ]);
-
-    Route::get('/need_answer', ['uses' => 'admin\AllQuestionsController@show', 'as' => 'questionsShowAll']);
-    Route::patch('/On/{question}', ['uses' => 'admin\PublicOnController@publicOn', 'as' => 'publicOn']);
-    Route::patch('/Off/{question}', ['uses' => 'admin\PublicOnController@publicOff', 'as' => 'publicOff']);
+    Route::resource('admins', 'AdminController', ['except' => ['show']]);
+    Route::resource('categories', 'CategoryController', ['except' => ['show', 'edit', 'update']]);
+    Route::resource('questions', 'QuestionController', ['except' => ['create', 'store', 'show']]);
+    
 });
 

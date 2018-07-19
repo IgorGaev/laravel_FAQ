@@ -8,6 +8,7 @@
                 <div class="card-header">{{ $title }}</div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        
                         {!! Form::open(['url' => route('admins.update',array('admin'=>$data['id'])),'class'=>'form-horizontal','method'=>'POST']) !!}
                         {!! Form::hidden('_method', 'patch') !!}
                         <div class="form-group">
@@ -23,9 +24,8 @@
                                 {!! Form::button('Сохранить', ['class' => 'btn btn-primary','type'=>'submit']) !!}
                             </div>
                         </div>
-
                         {!! Form::close() !!}
-
+                        
                     </div>
                 </div>
             </div>

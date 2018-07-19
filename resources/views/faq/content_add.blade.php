@@ -2,7 +2,7 @@
 <div class="card-body">
     <div class="table-responsive">
 
-        {!! Form::open(['url' => route('homeCatStore'),'class'=>'form-horizontal','method'=>'POST']) !!}
+        {!! Form::open(['url' => route('store'),'class'=>'form-horizontal','method'=>'POST']) !!}
 
         <div class="form-group">
             {!! Form::label('username','Имя:',['class' => 'col-xs-2 control-label'])   !!}

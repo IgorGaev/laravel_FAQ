@@ -5,7 +5,7 @@ namespace Faq\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use Faq\Http\Controllers\Controller;
 use Faq\User;
-use Faq\Http\Requests;
+use Faq\Http\Requests\AdminRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,16 +46,16 @@ class AdminController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\AdminRequest $request) {
+    public function store(AdminRequest $request) {
         //
         $input = $request->except('_token');
-        
+
         $input['password'] = Hash::make($input['password']);
 
         $admin = new User();
         $admin->fill($input);
         if ($admin->save()) {
-            return redirect('admin')->with('status', 'Администратор добавлен');
+            return redirect()->route('admins.index')->with('status', 'Администратор добавлен');
         }
     }
 
@@ -78,14 +78,12 @@ class AdminController extends Controller {
     public function edit(User $admin) {
         //
         $old = $admin->toArray();
-        if (view()->exists('admin.admins_edit')) {
-            $data = [
-                'title' => 'Редактирование пароля ',
-                'data' => $old
-            ];
+        $data = [
+            'title' => 'Редактирование пароля ',
+            'data' => $old
+        ];
 
-            return view('admin.admins_edit', $data);
-        }
+        return view('admin.admins_edit', $data);
     }
 
     /**
@@ -102,7 +100,6 @@ class AdminController extends Controller {
                     'password' => 'required|string|min:5',
         ]);
 
-
         if ($validator->fails()) {
             return redirect()->route('admins.edit', ['admin' => $input['id']])->withErrors($validator);
         }
@@ -111,7 +108,7 @@ class AdminController extends Controller {
         $admin->save();
 
         if ($admin->save()) {
-            return redirect('admin')->with('status', 'Пароль изменен');
+            return redirect()->route('admins.index')->with('status', 'Пароль изменен');
         }
     }
 
@@ -124,7 +121,7 @@ class AdminController extends Controller {
     public function destroy(User $admin) {
         //
         $admin->delete();
-        return redirect('admin')->with('status', 'Администратор удалён');
+        return redirect()->route('admins.index')->with('status', 'Администратор удалён');
     }
 
 }

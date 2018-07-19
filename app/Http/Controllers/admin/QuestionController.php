@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Faq\Http\Controllers\Controller;
 use Faq\Category;
 use Faq\Question;
+use Faq\Http\Requests\AnswerRequest;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -25,7 +26,7 @@ class QuestionController extends Controller {
             'categories' => $questions
         ];
 
-        return view('admin/questions', $data);
+        return view('admin.questions', $data);
     }
 
     /**
@@ -84,12 +85,12 @@ class QuestionController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Question $question, \Faq\Http\Requests\AnswerRequest $request) {
+    public function update(Question $question, AnswerRequest $request) {
         //
         $input = $request->except('_token');
         $question->fill($input);
         if ($question->update()) {
-            return redirect()->route('categories.index')->with('status', 'Вопрос успешно обновлен');
+            return redirect()->route('categories.index')->with('status', 'Вопрос успешно отредактирован');
         }
     }
 
@@ -102,9 +103,34 @@ class QuestionController extends Controller {
     public function destroy(Question $question) {
         //
         $question->delete();
-        return redirect()->route('questionsShowAll')->with('status', 'Вопрос удален');
+        return redirect()->route('categories.index')->with('status', 'Вопрос удален');
+    }
+    
+    public function showAll() {
+        //отображает все вопросы без овтета
+        $questions = Question::whereNull('answer')->get();
+        $data = [
+            'title' => 'Вопросы без ответа',
+            'questions' => $questions
+        ];
+
+        return view('admin/questions_all', $data);
+    }
+    
+    public function publicOn(Question $question) {
+        $question->public = 1;
+        $question->save();
+        if ($question->save()) {
+            return redirect()->route('categories.index')->with('status', 'Вопрос опубликован');
+        }
     }
 
-    
+    public function publicOff(Question $question) {
+        $question->public = 0;
+        $question->save();
+        if ($question->save()) {
+            return redirect()->route('categories.index')->with('status', 'Вопрос скрыт');
+        }
+    }
 
 }

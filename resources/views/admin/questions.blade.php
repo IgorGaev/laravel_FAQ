@@ -38,16 +38,10 @@
                                     @endif
                                 </td>
                                  <td>
-                                    {!! Form::open(['url'=>route('publicOff',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
-                                    {!! Form::hidden('_method', 'patch') !!}
-                                    {!! Form::button('Скрыть',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
+                                    {!! Html::link(route('publicOff',['question'=>$question->id]),'Скрыть',['class'=>' btn btn-success btn-sm']) !!}
                                 </td>
                                 <td>
-                                    {!! Form::open(['url'=>route('publicOn',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
-                                    {!! Form::hidden('_method', 'patch') !!}
-                                    {!! Form::button('Опубликовать',['class'=>'btn btn-success btn-sm', 'type'=>'submit']) !!}
-                                    {!! Form::close() !!}
+                                    {!! Html::link(route('publicOn',['question'=>$question->id]),'Опубликовать',['class'=>' btn btn-success btn-sm']) !!}
                                 </td>
                                 <td>
                                     {!! Form::open(['url'=>route('questions.destroy',['question'=>$question->id]), 'class'=>'form-horizontal','method' => 'POST']) !!}
