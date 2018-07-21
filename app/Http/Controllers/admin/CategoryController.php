@@ -18,12 +18,7 @@ class CategoryController extends Controller {
     public function index() {
         //
         $categories = Category::all();
-        $data = [
-            'title' => 'Темы',
-            'categories' => $categories,
-        ];
-
-        return view('admin.categories', $data);
+        return view('admin.categories')->with('categories',$categories);
     }
 
     /**
@@ -33,10 +28,7 @@ class CategoryController extends Controller {
      */
     public function create(Category $category, Request $request) {
         //
-        $data = [
-            'title' => 'Новая Тема'
-        ];
-        return view('admin.categories_add', $data);
+        return view('admin.categories_add');
     }
 
     /**

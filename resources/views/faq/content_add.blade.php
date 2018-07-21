@@ -1,4 +1,4 @@
-<div class="card-header">{{ $title }}</div>
+<h2>Добавить новый вопрос</h2>
 <div class="card-body">
     <div class="table-responsive">
 

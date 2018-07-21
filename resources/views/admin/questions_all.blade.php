@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ $title }}</div>
+                <div class="card-header">Вопросы без ответа</div>
                 <div class="card-body">
                     <table class="table table-striped table-sm">
                         <thead>

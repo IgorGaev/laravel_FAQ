@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $title }}</div>
+                <div class="card-header">Редактирование вопроса</div>
                 <div class="card-body">
                     <div class="table-responsive">
                         {!! Form::open(['url' => route('questions.update',array('question'=>$data['id'])),'class'=>'form-horizontal','method'=>'POST']) !!}

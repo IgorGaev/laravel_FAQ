@@ -14,21 +14,13 @@ class IndexController extends Controller {
     public function index() {
         
             $categories = Category::has('questions')->get();
-            $data = [
-                'title' => 'Главная',
-                'categories' => $categories
-            ];
-            return view('faq/home', $data);
+            return view('faq.home')->with('categories',$categories);
     }
 
     public function create(Category $category, Request $request) {
 
             $categories = Category::all();
-            $data = [
-                'title' => 'Новый вопрос',
-                'categories' => $categories
-            ];
-            return view('faq.home_cat_add', $data);
+            return view('faq.home_cat_add')->with('categories',$categories);
         }
 
     public function store(QuestionRequest $request) {

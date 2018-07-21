@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $title }}</div>
+                <div class="card-header">Панель администратора</div>
                <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">

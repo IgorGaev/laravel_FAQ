@@ -19,12 +19,7 @@ class AdminController extends Controller {
     public function index() {
         //
         $admins = User::all();
-        $data = [
-            'title' => 'Администраторы',
-            'admins' => $admins
-        ];
-
-        return view('admin/admins', $data);
+        return view('admin.admins')->with('admins',$admins);
     }
 
     /**
@@ -33,11 +28,9 @@ class AdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(User $admin, Request $request) {
-        //
-        $data = [
-            'title' => 'Новый администратор'
-        ];
-        return view('admin.admins_add', $data);
+        
+        return view('admin.admins_add');
+        
     }
 
     /**
@@ -78,12 +71,8 @@ class AdminController extends Controller {
     public function edit(User $admin) {
         //
         $old = $admin->toArray();
-        $data = [
-            'title' => 'Редактирование пароля ',
-            'data' => $old
-        ];
-
-        return view('admin.admins_edit', $data);
+        return view('admin.admins_edit')->with('data',$old);
+        
     }
 
     /**

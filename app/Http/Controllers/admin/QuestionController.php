@@ -18,15 +18,10 @@ class QuestionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        //
+        //отображение тем с вопросами.
         $input = $request->except('_token');
-        $questions = Category::has('questions')->where('id', $input['category'])->get();
-        $data = [
-            'title' => 'Вопросы',
-            'categories' => $questions
-        ];
-
-        return view('admin.questions', $data);
+        $categories = Category::has('questions')->where('id', $input['category'])->get();
+        return view('admin.questions')->with('categories',$categories);
     }
 
     /**
@@ -69,13 +64,8 @@ class QuestionController extends Controller {
         $old = $question->toArray();
         $categories = Category::all();
 
-        $data = [
-            'title' => 'Редактирование вопроса',
-            'data' => $old,
-            'categories' => $categories
-        ];
-
-        return view('admin.questions_edit', $data);
+        return view('admin.questions_edit', ['data' => $old,
+                                            'categories' => $categories]);
     }
 
     /**
@@ -107,17 +97,14 @@ class QuestionController extends Controller {
     }
     
     public function showAll() {
-        //отображает все вопросы без овтета
+        //Отображает все вопросы без ответа
         $questions = Question::whereNull('answer')->get();
-        $data = [
-            'title' => 'Вопросы без ответа',
-            'questions' => $questions
-        ];
 
-        return view('admin/questions_all', $data);
+        return view('admin.questions_all')->with('questions',$questions);
     }
     
     public function publicOn(Question $question) {
+        
         $question->public = 1;
         $question->save();
         if ($question->save()) {
@@ -126,6 +113,7 @@ class QuestionController extends Controller {
     }
 
     public function publicOff(Question $question) {
+        
         $question->public = 0;
         $question->save();
         if ($question->save()) {
